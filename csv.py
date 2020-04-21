@@ -60,12 +60,24 @@ def process(timestamp, data):
 	print("\"" + month + " " + str(day) + "\", " + str(total) + ", " + str(testing))
 
 def main():
+	all_timestamps = []
 	for filename in glob.glob("mementos/*"):
-		f = open(filename, "r")	
+		timestamp = filename[filename.find("\\") + 1:]
+		all_timestamps.append(timestamp)
+
+	timestamps = []
+	for i in range(0, len(all_timestamps)):
+		timestamp = all_timestamps[i]
+		if i == len(all_timestamps) - 1:
+			timestamps.append(timestamp)
+		elif timestamp[:8] != all_timestamps[i+1][:8]:
+			timestamps.append(timestamp)
+
+	for timestamp in timestamps:
+		f = open("mementos/" + timestamp, "r")	
 		data = str(f.read());
 		f.close()
 
-		timestamp = filename[filename.find("\\") + 1:]
 		process(timestamp, data)
 
 main()
