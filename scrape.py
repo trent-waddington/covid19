@@ -2,17 +2,17 @@
 import os.path
 import urllib.request
 
-def processMemento(timestamp, url):
-	if not os.path.exists("mementos/" + timestamp):
+def processMemento(timestamp, url, outdir):
+	if not os.path.exists(outdir + "/" + timestamp):
 		print("Pulling " + timestamp, flush=True)
 		f = urllib.request.urlopen(url)
-		o = open("mementos/" + timestamp, "w")
+		o = open(outdir + "/" + timestamp, "w")
 		o.write(str(f.read()))
 		o.close()
 
-def main():
+def processTimeMap(url, outdir):
 	print("Pulling index", flush=True)
-	f = urllib.request.urlopen("http://web.archive.org/web/timemap/link/www.qld.gov.au/health/conditions/health-alerts/coronavirus-covid-19/current-status/current-status-and-contact-tracing-alerts")
+	f = urllib.request.urlopen("http://web.archive.org/web/timemap/link/" + url)
 	mementos_str = str(f.read())
 
 	firstMemento = mementos_str.find("=\"first memento\"");
@@ -32,7 +32,12 @@ def main():
 			print("Expected web/")
 		nextslash = url.find("/", webslash + 4)
 		timestamp = url[webslash + 4:nextslash]
-		processMemento(timestamp, url)
+		processMemento(timestamp, url, outdir)
 		memento = mementos_str.find("<", right)
+
+
+def main():
+	processTimeMap("www.qld.gov.au/health/conditions/health-alerts/coronavirus-covid-19/current-status/current-status-and-contact-tracing-alerts", "mementos")
+	processTimeMap("www.qld.gov.au/health/conditions/health-alerts/coronavirus-covid-19/current-status/statistics", "stats")
 
 main()
