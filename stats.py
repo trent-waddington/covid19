@@ -9,18 +9,22 @@ def get_last_updated(data):
 		return data[p_last_updated + len("<p>Last updated: "):end_p]
 	return "null"
 
-def get_active_cases(data):
-	th_active_cases = data.find("<th>Active cases</th>")
-	if th_active_cases != -1:
-		td = data.find("<td>", th_active_cases)
-		end_td = data.find("</td>", td)
-		return data[td+len("<td>"):end_td]
+def pull_from_td(data, start):
+	td = data.find("<td>", start)
+	end_td = data.find("</td>", td)
+	return data[td+len("<td>"):end_td]
+
+def pull_field(data, header):
+	th = data.find("<th>" + header + "</th>")
+	if th != -1:
+		return pull_from_td(data, th)
 	return "null"
 
 def process(timestamp, data):
 	last_updated = get_last_updated(data)
-	active_cases = get_active_cases(data)
-	print(last_updated + ", " + active_cases)
+	active_cases = pull_field(data, "Active cases")
+	current_hospitalisations = pull_field(data, "Current hospitalisations")
+	print(last_updated + ", " + active_cases + ", " + current_hospitalisations)
 
 def main():
 	all_timestamps = []
