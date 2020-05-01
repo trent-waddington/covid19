@@ -7,4 +7,4 @@ The data is scraped from <a href="https://www.qld.gov.au/health/conditions/healt
 
 Producing qld.csv which is self explanatory.
 
-
+Data is also scraped from <a href="https://www.qld.gov.au/health/conditions/health-alerts/coronavirus-covid-19/current-status/statistics">the stats page</a>, producing stats.csv.
