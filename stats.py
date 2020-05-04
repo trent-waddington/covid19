@@ -6,7 +6,9 @@ def get_last_updated(data):
 	p_last_updated = data.find("<p>Last updated: ")
 	if p_last_updated != -1:
 		end_p = data.find("</p>", p_last_updated)
-		return data[p_last_updated + len("<p>Last updated: "):end_p]
+		last_updated = data[p_last_updated + len("<p>Last updated: "):end_p]
+		last_updated = last_updated.replace("Midday ", "")
+		return last_updated
 	return "null"
 
 def pull_from_td(data, start):
