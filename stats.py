@@ -26,7 +26,9 @@ def process(timestamp, data):
 	last_updated = get_last_updated(data)
 	active_cases = pull_field(data, "Active cases")
 	current_hospitalisations = pull_field(data, "Current hospitalisations")
-	print(last_updated + ", " + active_cases + ", " + current_hospitalisations)
+	in_icu = pull_field(data, "Patients currently in ICU")
+	deaths = pull_field(data, "Deaths")
+	print(last_updated + ", " + active_cases + ", " + current_hospitalisations + ", " + in_icu + ", " + deaths)
 
 def main():
 	all_timestamps = []
