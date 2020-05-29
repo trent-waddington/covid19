@@ -19,7 +19,7 @@ def pull_from_td(data, start):
 def pull_field(data, header):
 	th = data.find("<th>" + header + "</th>")
 	if th != -1:
-		return pull_from_td(data, th)
+		return pull_from_td(data, th).replace(",", "")
 	return "null"
 
 def process(timestamp, data):
@@ -28,7 +28,10 @@ def process(timestamp, data):
 	current_hospitalisations = pull_field(data, "Current hospitalisations")
 	in_icu = pull_field(data, "Patients currently in ICU")
 	deaths = pull_field(data, "Deaths")
-	print(last_updated + ", " + active_cases + ", " + current_hospitalisations + ", " + in_icu + ", " + deaths)
+	under_investigation = pull_field(data, "Under investigation")
+	confirmed_cases = pull_field(data, "Confirmed cases")
+	recovered = pull_field(data, "Recovered")
+	print(last_updated + ", " + active_cases + ", " + current_hospitalisations + ", " + in_icu + ", " + deaths + ", " + under_investigation + ", " + confirmed_cases + ", " + recovered)
 
 def main():
 	all_timestamps = []
@@ -43,6 +46,8 @@ def main():
 			timestamps.append(timestamp)
 		elif timestamp[:8] != all_timestamps[i+1][:8]:
 			timestamps.append(timestamp)
+
+	print('"Date", "Active Cases", "Current Hospitalisations", "In ICU", "Deaths", "Under Investigation", "Confirmed Cases", "Recovered"')
 
 	for timestamp in timestamps:
 		f = open("stats/" + timestamp, "r")	
