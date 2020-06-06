@@ -8,6 +8,8 @@ def get_last_updated(data):
 		end_p = data.find("</p>", p_last_updated)
 		last_updated = data[p_last_updated + len("<p>Last updated: "):end_p]
 		last_updated = last_updated.replace("Midday ", "")
+		if last_updated.find("pm ") != -1:
+			last_updated = last_updated[last_updated.find("pm ") + 3:]
 		return last_updated
 	return "null"
 
@@ -17,7 +19,7 @@ def pull_from_td(data, start):
 	return data[td+len("<td>"):end_td]
 
 def pull_field(data, header):
-	th = data.find("<th>" + header + "</th>")
+	th = data.find("<th>" + header + "<")
 	if th != -1:
 		return pull_from_td(data, th).replace(",", "")
 	return "null"
@@ -30,6 +32,8 @@ def process(timestamp, data):
 	deaths = pull_field(data, "Deaths")
 	under_investigation = pull_field(data, "Under investigation")
 	confirmed_cases = pull_field(data, "Confirmed cases")
+	if confirmed_cases == "null":
+		confirmed_cases = pull_field(data, "Number of cases")
 	recovered = pull_field(data, "Recovered")
 	print(last_updated + ", " + active_cases + ", " + current_hospitalisations + ", " + in_icu + ", " + deaths + ", " + under_investigation + ", " + confirmed_cases + ", " + recovered)
 
