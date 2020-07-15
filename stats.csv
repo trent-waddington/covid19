@@ -1,4 +1,4 @@
-"Date", "Active Cases", "Current Hospitalisations", "In ICU", "Deaths", "Under Investigation", "Confirmed Cases", "Recovered"
+"Date", "Active Cases", "Current Hospitalisations", "In ICU", "Total Deaths", "Under Investigation", "Confirmed Cases", "Recovered"
 22 April 2020, 280, 20, null, 6, 10, 1024, 738
 23 April 2020, 282, 20, null, 6, 9, 1026, 738
 24 April 2020, 282, 18, null, 6, 3, 1026, 738
@@ -72,3 +72,14 @@
 1 July 2020, 2, 1, 0, 6, 0, 1067, 1054
 2 July 2020, 2, 1, 0, 6, 0, 1067, 1054
 3 July 2020, 2, 1, 0, 6, 0, 1067, 1054
+4 July 2020, 1, 1, 0, 6, 0, 1067, 1055
+5 July 2020, 1, 1, 0, 6, 0, 1067, 1055
+6 July 2020, 1, 1, 0, 6, 0, 1067, 1055
+7 July 2020, 2, 1, 0, 6, 0, 1068, 1055
+8 July 2020, 2, 1, 0, 6, 0, 1068, 1056
+9 July 2020, 2, 1, 0, 6, 0, 1068, 1057
+10 July 2020, 2, 1, 0, 6, 0, 1068, 1057
+11 July 2020, 3, 1, 0, 6, 0, 1070, 1058
+12 July 2020, 3, 1, 0, 6, 0, 1070, 1058
+13 July 2020, 4, 1, 0, 6, 0, 1071, 1058
+14 July 2020, 4, 1, 0, 6, 0, 1071, 1058

@@ -51,7 +51,7 @@ def main():
 		elif timestamp[:8] != all_timestamps[i+1][:8]:
 			timestamps.append(timestamp)
 
-	print('"Date", "Active Cases", "Current Hospitalisations", "In ICU", "Deaths", "Under Investigation", "Confirmed Cases", "Recovered"')
+	print('"Date", "Active Cases", "Current Hospitalisations", "In ICU", "Total Deaths", "Under Investigation", "Confirmed Cases", "Recovered"')
 
 	for timestamp in timestamps:
 		f = open("stats/" + timestamp, "r")	
