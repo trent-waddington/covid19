@@ -10,6 +10,8 @@ def get_last_updated(data):
 		last_updated = last_updated.replace("Midday ", "")
 		if last_updated.find("pm ") != -1:
 			last_updated = last_updated[last_updated.find("pm ") + 3:]
+		if last_updated.find("am ") != -1:
+			last_updated = last_updated[last_updated.find("am ") + 3:]
 		return last_updated
 	return "null"
 
